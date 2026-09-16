@@ -187,6 +187,22 @@ void ecs_flush_deletions(ECS *e) {
 
 		ecs_da_append(&e->available_ids, entity);
 	}
+
+	e->pending_entity_removals.count = 0;
+}
+
+void ecs_free(ECS *e) {
+	free(e->sparse_matrix);
+
+	ecs_da_free(&e->pending_entity_removals);
+	ecs_da_free(&e->available_ids);
+
+	for (size_t i = 0; i < e->component_pools.count; i++) {
+		free(e->component_pools.items[i].data);
+		free(e->component_pools.items[i].index_to_entity);
+	}
+
+	ecs_da_free(&e->component_pools);
 }
 
 #endif // ECS_IMPLEMENTATION

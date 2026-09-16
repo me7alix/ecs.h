@@ -54,5 +54,6 @@ int main(void) {
 		ecs_flush_deletions(&world.ecs);
 	}
 
+	ecs_free(&world.ecs);
 	return 0;
 }
