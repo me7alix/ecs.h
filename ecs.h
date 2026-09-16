@@ -39,6 +39,8 @@ typedef struct {
 } ECS;
 
 ECS ecs_new(size_t capacity);
+void ecs_free(ECS *e);
+
 ECS_ComponentType ecs_register_component(ECS *e, size_t element_size, size_t capacity);
 
 ECS_Entity ecs_add_entity(ECS *e);
