@@ -104,7 +104,7 @@ ECS ecs_new(size_t capacity) {
 	};
 }
 
-uint32_t ecs_add_entity(ECS *e) {
+ECS_Entity ecs_add_entity(ECS *e) {
 	if (e->available_ids.count > 0) {
 		return e->available_ids.items[--e->available_ids.count];
 	}
